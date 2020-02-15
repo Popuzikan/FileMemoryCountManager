@@ -18,11 +18,15 @@ namespace FileMemoryCountManager.Clients
 
         public DirectoryInfo SelectFolderForMemoryCounting()
         {
+            Console.WriteLine("\tSelect the folder you need to search for files");
+            Console.WriteLine(new string('-',100));
+
             if (folderBrowser.ShowDialog().Equals(DialogResult.OK))
                 return string.IsNullOrWhiteSpace(folderBrowser.SelectedPath) ? SelectFolderForMemoryCounting():new DirectoryInfo(folderBrowser.SelectedPath);
           
             else
                 return SelectFolderForMemoryCounting();
+
         }
     }
 }

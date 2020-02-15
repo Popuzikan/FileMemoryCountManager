@@ -39,6 +39,8 @@ namespace FileMemoryCountManager.SubSystemsClass
 
         public async void ReadSumBytesInSearchFilesAsync()
         {
+
+            Console.WriteLine("\tThe result of counting the sum of bytes of file memory");
             foreach (var pair in _listDictinary)
             {                
                 if (!string.IsNullOrEmpty(Path.GetExtension(pair.Value)))
@@ -58,7 +60,7 @@ namespace FileMemoryCountManager.SubSystemsClass
                         _catalog.Files.Add(new XmlFile(fileName.ToString(), _bytesSum));
 
                         Console.WriteLine($"\nFile {fileName.ToString()} " +
-                            $"result sum bytes memory => {_bytesSum.ToString()}");
+                            $":=> Result sum bytes memory => {_bytesSum.ToString()}");
                        
 
                     }, Path.GetFileName(pair.Value));
@@ -74,17 +76,22 @@ namespace FileMemoryCountManager.SubSystemsClass
         {
             if (_listDictinary.Count!=0)
             {
+                Console.WriteLine("\n\tList of found data\n");
+
+                Console.WriteLine(new string('-',100));
+
                 foreach (var pair in _listDictinary)
                 {
                     if (string.IsNullOrWhiteSpace(Path.GetExtension(pair.Value)))
-                        Console.WriteLine($"{pair.Key} Catalog => {Path.GetDirectoryName(pair.Value)}");
+                        Console.WriteLine($"{pair.Key} Catalog => {Path.GetDirectoryName(pair.Value)}\n");
 
                     else
-                        Console.WriteLine($"{pair.Key} File => {Path.GetFileName(pair.Value)}");
+                        Console.WriteLine($"{pair.Key} File => {Path.GetFileName(pair.Value)}\n");
                 }
+                Console.WriteLine(new string('-', 100));
             }
             else
-                Console.WriteLine("Files was not found");
+                Console.WriteLine("\n\tFiles was not found");
            
         }
     }

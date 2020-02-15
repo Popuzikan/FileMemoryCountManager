@@ -15,7 +15,9 @@ namespace FileMemoryCountManager
         [STAThread]
         static void Main()
         {
-           
+            Console.Title = "IFileMemoryCounter";
+
+
             var appCreator = new AppCreator(new Client(), new ServiceProvider(), new XmlProvider("XmlFileInfo.xml"));
 
             StartAplication(appCreator);
