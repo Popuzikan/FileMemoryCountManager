@@ -10,71 +10,55 @@ namespace FileMemoryCountManager.SubSystemsClass
 {
     class FileManager
     {
-        private byte[] _bytes;
+        private byte [] _bytes;
 
-        private FileStream [] _fileStream;
+        private Stream _streamer;
+
+        private BufferedStream  _bufferedStream;
 
         private readonly IDictionary<string, string> _list;
 
         public FileManager(IDictionary<string,string> list)
         {
             if (list != null && !list.Count.Equals(0))
-            {
                 _list = list;
-                _fileStream = new FileStream [list.Count];
-            }
             else
                 Console.WriteLine("List is empty");
         }
 
-        public void ReadSumFilesInBytesAsync()
+        public async void ReadSumFilesInBytesAsync()
         {
-            int counter = 0;
-          
             foreach (var item in _list)
             {
                 string ext = Path.GetExtension(item.Value);
 
                 if (!string.IsNullOrEmpty(ext))
                 {
-                    _fileStream[counter] = File.OpenRead(item.Value);
+                    _streamer = File.OpenRead(item.Value);
+                   
+                    _bufferedStream = new BufferedStream(_streamer, (int)_streamer.Length);
 
-                    _bytes = new byte[_fileStream[counter].Length];
+                    _bytes = new byte[_bufferedStream.Length];
 
-                    _fileStream[counter].Read(_bytes, 0, _bytes.Length);           
-                }
-                ThreadPool.QueueUserWorkItem(GetByteResultForConsoles,_bytes);
-            }          
+                    await _bufferedStream.ReadAsync(_bytes, 0, _bytes.Length);
+
+                    await Task.Factory.StartNew(GetByteResultForConsoles, item.Key);
+
+                }         
+            }              
         }
 
-        public void GetByteResultForConsoles(object array)
+        private void GetByteResultForConsoles(object sender)
         {
-            byte[] mass;
-            long sumResult = 0;
-            if (array is Array)
-            {
-                mass = (byte [])array;
-                foreach (var item in mass)
-                         sumResult += item;
+           long sumResult = 0;
+                    
+           foreach (var item in _bytes)
+                  sumResult += item;
 
-                Console.WriteLine($"Yo result {sumResult.ToString()}");
-            }    
+               Console.WriteLine($"File {sender.ToString()} result sum bytes memory => {sumResult.ToString(),20}");
+     
         }
-        //private void GetByteResultForConsoles(IAsyncResult asyncResult)
-        //{
-        //    asyncStater = false;
-
-        //    long sum = 0;
-
-        //    (asyncResult.AsyncState as FileStream)?.Close();
-
-        //    foreach (var item in _bytes)
-        //              sum+=item;
-
-        //    Console.WriteLine($"Bytes sum is readed => {sum.ToString()}");           
-        //}
-
-
+    
         public void Show()
         {
             foreach (var pair in _list)

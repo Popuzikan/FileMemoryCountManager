@@ -11,7 +11,7 @@ namespace FileMemoryCountManager
     class Program
     {
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
             var client = new Client();
 
@@ -26,7 +26,6 @@ namespace FileMemoryCountManager
             fileManager.Show();
 
             fileManager.ReadSumFilesInBytesAsync();
-
 
             Console.ReadKey();
         }

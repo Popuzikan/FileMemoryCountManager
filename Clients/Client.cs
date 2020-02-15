@@ -9,7 +9,7 @@ namespace FileMemoryCountManager.Clients
 {
     class Client
     {
-        private FolderBrowserDialog folderBrowser;
+        private readonly FolderBrowserDialog folderBrowser;
 
         public Client()
         {
