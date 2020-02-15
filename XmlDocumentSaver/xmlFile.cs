@@ -1,6 +1,4 @@
-﻿
-
-namespace FileMemoryCountManager.XmlDocumentSaver
+﻿namespace FileMemoryCountManager.XmlDocumentSaver
 {
     struct XmlFile
     {

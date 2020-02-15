@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileMemoryCountManager.Clients
 {
