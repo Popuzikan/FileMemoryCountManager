@@ -25,7 +25,7 @@ namespace FileMemoryCountManager
 
             fileManager.Show();
 
-            fileManager.ReadSumFilesInBytesAsync();
+            fileManager.ReadSumBytesInSearchFilesAsync();
 
             Console.ReadKey();
         }

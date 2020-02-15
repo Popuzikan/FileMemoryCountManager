@@ -26,7 +26,7 @@ namespace FileMemoryCountManager.SubSystemsClass
                 Console.WriteLine("List is empty");
         }
 
-        public async void ReadSumFilesInBytesAsync()
+        public async void ReadSumBytesInSearchFilesAsync()
         {
             foreach (var item in _list)
             {
@@ -42,23 +42,20 @@ namespace FileMemoryCountManager.SubSystemsClass
 
                     await _bufferedStream.ReadAsync(_bytes, 0, _bytes.Length);
 
-                    await Task.Factory.StartNew(GetByteResultForConsoles, item.Key);
+                    await Task.Factory.StartNew(fileNumber =>
+                    {
+                        long sumResult = 0;
 
+                        foreach (byte val in _bytes)
+                                 sumResult += val;
+                       
+                        Console.WriteLine($"File {fileNumber.ToString()} result sum bytes memory => {sumResult.ToString(),20}");
+                    },
+                    item.Key);
                 }         
-            }              
+            }          
         }
-
-        private void GetByteResultForConsoles(object sender)
-        {
-           long sumResult = 0;
-                    
-           foreach (var item in _bytes)
-                  sumResult += item;
-
-               Console.WriteLine($"File {sender.ToString()} result sum bytes memory => {sumResult.ToString(),20}");
-     
-        }
-    
+  
         public void Show()
         {
             foreach (var pair in _list)
