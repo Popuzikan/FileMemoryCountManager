@@ -24,7 +24,7 @@ namespace FileMemoryCountManager.SubSystemsClass
         
         private bool isFirstAcive = false;  
 
-        private IDictionary<string, string> _listDictinary;
+        private readonly IDictionary<string, string> _listDictinary;
 
         //
         // Сводка:

@@ -50,6 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubSystemsClass\FileManager.cs" />
     <Compile Include="SubSystemsClass\ServiceProvider.cs" />
+    <Compile Include="XmlDocumentSaver\Catalog.cs" />
+    <Compile Include="XmlDocumentSaver\xmlFile.cs" />
+    <Compile Include="XmlDocumentSaver\XmlProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

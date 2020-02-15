@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Xml;
 using System.Threading.Tasks;
-using System.Threading;
+using System.Collections.Generic;
+using FileMemoryCountManager.XmlDocumentSaver;
+
 
 namespace FileMemoryCountManager.SubSystemsClass
 {
@@ -12,29 +13,34 @@ namespace FileMemoryCountManager.SubSystemsClass
     {
         private byte [] _bytes;
 
+        private long _bytesSum;
+             
         private Stream _streamer;
 
         private BufferedStream  _bufferedStream;
 
-        private readonly IDictionary<string, string> _list;
+        private readonly IDictionary<string, string> _listDictinary;
 
-        public FileManager(IDictionary<string,string> list)
+        private readonly Catalog<XmlFile> _catalog;
+
+        public FileManager(IDictionary<string,string> listDictinary)
         {
-            if (list != null && !list.Count.Equals(0))
-                _list = list;
+            if (listDictinary != null && !listDictinary.Count.Equals(0))
+            {
+                _listDictinary = listDictinary;
+                _catalog = new Catalog<XmlFile>();
+            }
             else
-                Console.WriteLine("List is empty");
+                Console.WriteLine("List is empty");  
         }
 
         public async void ReadSumBytesInSearchFilesAsync()
         {
-            foreach (var item in _list)
-            {
-                string ext = Path.GetExtension(item.Value);
-
-                if (!string.IsNullOrEmpty(ext))
+            foreach (var pair in _listDictinary)
+            {                
+                if (!string.IsNullOrEmpty(Path.GetExtension(pair.Value)))
                 {
-                    _streamer = File.OpenRead(item.Value);
+                    _streamer = File.OpenRead(pair.Value);
                    
                     _bufferedStream = new BufferedStream(_streamer, (int)_streamer.Length);
 
@@ -42,29 +48,37 @@ namespace FileMemoryCountManager.SubSystemsClass
 
                     await _bufferedStream.ReadAsync(_bytes, 0, _bytes.Length);
 
-                    await Task.Factory.StartNew(fileNumber =>
+                    await Task.Factory.StartNew(fileName =>
                     {
-                        long sumResult = 0;
+                        _bytesSum = _bytes.Sum(n => (long)n);
 
-                        foreach (byte val in _bytes)
-                                 sumResult += val;
+                        _catalog.Files.Add(new XmlFile(fileName.ToString(), _bytesSum));
+
+                        Console.WriteLine($"\nFile {fileName.ToString()} " +
+                            $"result sum bytes memory => {_bytesSum.ToString()}");
                        
-                        Console.WriteLine($"File {fileNumber.ToString()} result sum bytes memory => {sumResult.ToString(),20}");
-                    },
-                    item.Key);
+
+                    }, Path.GetFileName(pair.Value));
                 }         
             }          
         }
   
         public void Show()
         {
-            foreach (var pair in _list)
+            if (_listDictinary.Count!=0)
             {
-                if (string.IsNullOrWhiteSpace(Path.GetExtension(pair.Value)))
-                    Console.WriteLine($"{pair.Key} Catalog => {Path.GetDirectoryName(pair.Value)}");
-                else
-                    Console.WriteLine($"{pair.Key} File => {Path.GetFileName(pair.Value)}");       
+                foreach (var pair in _listDictinary)
+                {
+                    if (string.IsNullOrWhiteSpace(Path.GetExtension(pair.Value)))
+                        Console.WriteLine($"{pair.Key} Catalog => {Path.GetDirectoryName(pair.Value)}");
+
+                    else
+                        Console.WriteLine($"{pair.Key} File => {Path.GetFileName(pair.Value)}");
+                }
             }
+            else
+                Console.WriteLine("Files was not found");
+           
         }
     }
 }
