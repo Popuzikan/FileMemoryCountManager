@@ -11,14 +11,13 @@ namespace FileMemoryCountManager.ProgrammCompiller
 {
     class AppCreator
     {
-
-        private Client _client;
-
         private FileManager _fileManager;
 
-        private ServiceProvider _serviceProvider;
+        private readonly Client _client;
 
-        private XmlProvider _xmlProvider;
+        private readonly XmlProvider _xmlProvider;
+
+        private readonly ServiceProvider _serviceProvider;
 
         public AppCreator(Client client, ServiceProvider serviceProvider, XmlProvider xmlProvider)
         {
@@ -27,15 +26,13 @@ namespace FileMemoryCountManager.ProgrammCompiller
             _xmlProvider = xmlProvider;
         }
 
-
         public void Compile()
         {
-            _fileManager = new FileManager(_serviceProvider.FindFilesInDirectory(_client.SelectFolderForMemoryCounting()), _xmlProvider);
+            _fileManager = new FileManager(_serviceProvider.FindFilesInDirectory( _client.SelectFolderForMemoryCounting()), _xmlProvider);
 
-            _fileManager.Show();
+            _fileManager.ShowFoundData();
 
             _fileManager.ReadSumBytesInSearchFilesAsync();
         }
-
     }
 }

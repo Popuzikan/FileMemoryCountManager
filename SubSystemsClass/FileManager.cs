@@ -66,13 +66,10 @@ namespace FileMemoryCountManager.SubSystemsClass
                     }, Path.GetFileName(pair.Value));
                 }         
             }
-
             _xmlProvider.WriteXmlFile(_catalog);
-            
-
         }
   
-        public void Show()
+        public void ShowFoundData()
         {
             if (_listDictinary.Count!=0)
             {

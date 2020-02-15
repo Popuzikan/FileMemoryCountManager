@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FileMemoryCountManager.ProgrammCompiller;
 using FileMemoryCountManager.XmlDocumentSaver;
@@ -17,8 +15,9 @@ namespace FileMemoryCountManager
         {
             Console.Title = "IFileMemoryCounter";
 
+            string pathXmlFile = "XmlFileInfo.xml";
 
-            var appCreator = new AppCreator(new Client(), new ServiceProvider(), new XmlProvider("XmlFileInfo.xml"));
+            AppCreator appCreator = new AppCreator(new Client(),new ServiceProvider(), new XmlProvider(pathXmlFile));
 
             StartAplication(appCreator);
 
@@ -27,7 +26,7 @@ namespace FileMemoryCountManager
 
         static void StartAplication(AppCreator creator)
         {
-            creator?.Compile(); 
+                creator?.Compile();   
         }
     }
 }
