@@ -50,12 +50,13 @@ namespace FileMemoryCountManager.XmlDocumentSaver
             // Сохраняем документ.
             _document.Save(_pathNameXmlDoc);
 
+            Console.WriteLine($"Files are successfully written to the XML document { _pathNameXmlDoc} located in the root of the application");
+
             void AddChildNode(string childName, string childText, XmlElement parentNode, XmlDocument doc)
             {
                 var child = doc.CreateElement(childName);
                 child.InnerText = childText;
                 parentNode.AppendChild(child);
-
             }
         }
     }

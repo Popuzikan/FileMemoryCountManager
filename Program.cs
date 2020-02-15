@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileMemoryCountManager.ProgrammCompiller;
+using FileMemoryCountManager.XmlDocumentSaver;
 using FileMemoryCountManager.Clients;
 using FileMemoryCountManager.SubSystemsClass;
 
@@ -13,23 +15,17 @@ namespace FileMemoryCountManager
         [STAThread]
         static void Main()
         {
-            var client = new Client();
+           
+            var appCreator = new AppCreator(new Client(), new ServiceProvider(), new XmlProvider("XmlFileInfo.xml"));
 
-            var provider = new ServiceProvider();
-                       
-            Console.ReadKey();
-                        
-            var findFIles =  provider.FindFilesInDirectory(client.SelectFolderForMemoryCounting());
-
-            var fileManager = new FileManager(findFIles);
-
-            fileManager.Show();
-
-            fileManager.ReadSumBytesInSearchFilesAsync();
-
-            fileManager.
+            StartAplication(appCreator);
 
             Console.ReadKey();
+        }
+
+        static void StartAplication(AppCreator creator)
+        {
+            creator?.Compile(); 
         }
     }
 }

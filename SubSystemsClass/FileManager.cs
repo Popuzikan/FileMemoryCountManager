@@ -23,12 +23,15 @@ namespace FileMemoryCountManager.SubSystemsClass
 
         private readonly Catalog<XmlFile> _catalog;
 
-        public FileManager(IDictionary<string,string> listDictinary)
+        private readonly XmlProvider _xmlProvider;
+
+        public FileManager(IDictionary<string,string> listDictinary, XmlProvider xmlProvider)
         {
             if (listDictinary != null && !listDictinary.Count.Equals(0))
             {
                 _listDictinary = listDictinary;
                 _catalog = new Catalog<XmlFile>();
+                _xmlProvider = xmlProvider;
             }
             else
                 Console.WriteLine("List is empty");  
@@ -60,7 +63,11 @@ namespace FileMemoryCountManager.SubSystemsClass
 
                     }, Path.GetFileName(pair.Value));
                 }         
-            }          
+            }
+
+            _xmlProvider.WriteXmlFile(_catalog);
+            
+
         }
   
         public void Show()
