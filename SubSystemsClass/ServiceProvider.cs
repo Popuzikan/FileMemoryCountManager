@@ -9,7 +9,6 @@ namespace FileMemoryCountManager.SubSystemsClass
     /// Данный класс является поставщиком услуг.
     /// This class is a service provider.
     /// </summary>>
-
     class ServiceProvider
     {
         //

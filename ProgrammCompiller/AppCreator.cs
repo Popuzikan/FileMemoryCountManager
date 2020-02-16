@@ -2,7 +2,6 @@
 using FileMemoryCountManager.SubSystemsClass;
 using FileMemoryCountManager.XmlDocumentSaver;
 
-
 namespace FileMemoryCountManager.ProgrammCompiller
 {
         //

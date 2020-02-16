@@ -7,6 +7,7 @@ namespace FileMemoryCountManager.XmlDocumentSaver
         // Сводка:
         //    Провайдер позволяющий производить запись каталога в Хмl файл
         //    
+
     class XmlProvider
     {
         // полный путь нахождения ХМL документа для записи

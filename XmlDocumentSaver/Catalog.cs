@@ -2,6 +2,7 @@
 
 namespace FileMemoryCountManager.XmlDocumentSaver
 {
+
         //
         // Сводка:
         //     Представляет каталог для ХML документа

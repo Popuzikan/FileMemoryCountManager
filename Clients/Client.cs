@@ -9,7 +9,6 @@ namespace FileMemoryCountManager.Clients
         //
         // Сводка:
         //        Представляет доступ клиента к проводнику
-
         private readonly FolderBrowserDialog folderBrowser;
 
         public Client()

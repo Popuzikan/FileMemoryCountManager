@@ -8,8 +8,7 @@ To start the project it is necessary to open the FileMemoryCountManager.sln file
 
 ### Prerequisites
 
-For correct operation of application you need to install Microsoft Visual Studio with the version of the 
-.NET Framework not lower than 4.7.0
+For correct operation of application you need to install Microsoft Visual Studio with the version of the .NET Framework not lower than 4.7.0
 
 ## Contributing
 

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using FileMemoryCountManager.XmlDocumentSaver;
 
-
 namespace FileMemoryCountManager.SubSystemsClass
 {
     class FileManager
