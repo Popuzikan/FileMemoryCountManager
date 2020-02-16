@@ -10,16 +10,34 @@ namespace FileMemoryCountManager.SubSystemsClass
 {
     class FileManager
     {
+        //
+        // Сводка:
+        //     Представляет массив для хранения байтов памяти файла.
         private byte [] _bytes;
 
+        //
+        // Сводка:
+        //     Представляет сумму байтов памяти файла 
         private long _bytesSum;
              
         private Stream _streamer;
 
+        //
+        // Сводка:
+        //     Буффер для считывания данных
         private BufferedStream  _bufferedStream;
 
+        //
+        // Сводка:
+        //     Представляет словать в вите пар ключ-значение 
+        //        ключ, порядковый номер файла или папки
+        //        значение имя найденного файла или папки
         private readonly IDictionary<string, string> _listDictinary;
 
+        //
+        // Сводка:
+        //     Представляет каталог для добавления имени файла и суммы байтов памяти 
+        //     для записи в Xml Document
         private readonly Catalog<XmlFile> _catalog;
 
         private readonly XmlProvider _xmlProvider;
@@ -36,9 +54,14 @@ namespace FileMemoryCountManager.SubSystemsClass
                 Console.WriteLine("List is empty");  
         }
 
+        //
+        // Сводка:
+        //     Метод для подсчета суммы байтов памяти файлов
+        //     подсчитывает память файла из _listDictinary
+        //     добовляет данные в _catalog
+        //     отправляет данные из _catalog на запись в XML файл
         public async void ReadSumBytesInSearchFilesAsync()
         {
-
             Console.WriteLine("\tThe result of counting the sum of bytes of file memory");
             foreach (var pair in _listDictinary)
             {                
@@ -68,6 +91,9 @@ namespace FileMemoryCountManager.SubSystemsClass
             _xmlProvider.WriteXmlFile(_catalog);
         }
   
+        //
+        // Сводка:
+        //     Метод для отображения найденных файлов и папок    
         public void ShowFoundData()
         {
             if (_listDictinary.Count!=0)
