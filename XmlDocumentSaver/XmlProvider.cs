@@ -3,6 +3,10 @@ using System.Xml;
 
 namespace FileMemoryCountManager.XmlDocumentSaver
 {
+        //
+        // Сводка:
+        //    Провайдер позволяющий производить запись каталога в Хмl файл
+        //    
     class XmlProvider
     {
         // полный путь нахождения ХМL документа для записи
@@ -12,8 +16,10 @@ namespace FileMemoryCountManager.XmlDocumentSaver
         {
             _pathNameXmlDoc = pathNameXmlDoc;
         }
-
-        // метод записи данных в ХML файл
+  
+        //
+        // Сводка:
+        //        метод записи данных в ХML файл/     
         public void WriteXmlFile(Catalog<XmlFile> catalog)
         {
             // Создаем новый Xml документ.
