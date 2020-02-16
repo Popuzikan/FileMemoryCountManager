@@ -6,6 +6,10 @@ namespace FileMemoryCountManager.Clients
 {
     class Client
     {
+        //
+        // Сводка:
+        //        Представляет доступ клиента к проводнику
+
         private readonly FolderBrowserDialog folderBrowser;
 
         public Client()
@@ -13,6 +17,10 @@ namespace FileMemoryCountManager.Clients
             folderBrowser = new FolderBrowserDialog();
         }
 
+        //
+        // Сводка:
+        //       Метод для вызова проводника
+        //       позволяет выбрать пользователю папку для поиска файлов
         public DirectoryInfo SelectFolderForMemoryCounting()
         {
             Console.WriteLine("\tSelect the folder you need to search for files");
@@ -23,7 +31,6 @@ namespace FileMemoryCountManager.Clients
           
             else
                 return SelectFolderForMemoryCounting();
-
         }
     }
 }
