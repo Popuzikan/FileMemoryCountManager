@@ -11,7 +11,7 @@ namespace FileMemoryCountManager
         [STAThread]
         static void Main()
         {
-            Console.Title = "IFileMemoryCounter";
+            Console.Title = "FileMemoryCounter";
 
             string pathXmlFile = "XmlFileInfo.xml";
 

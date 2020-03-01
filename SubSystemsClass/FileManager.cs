@@ -51,7 +51,7 @@ namespace FileMemoryCountManager.SubSystemsClass
                     _bytes = new byte[_bufferedStream.Length];
 
                     await _bufferedStream.ReadAsync(_bytes, 0, _bytes.Length);
-
+                                       
                     await Task.Factory.StartNew(fileName =>
                     {
                         _bytesSum = _bytes.Sum(n => (long)n);
