@@ -2,9 +2,12 @@
 using FileMemoryCountManager.SubSystemsClass;
 using FileMemoryCountManager.XmlDocumentSaver;
 
-
 namespace FileMemoryCountManager.ProgrammCompiller
 {
+        //
+        // Сводка:
+        //     Представляет непосредственно сам Фасад приложения
+        //     объединяет все необходимые классы приложения
     class AppCreator
     {
         private FileManager _fileManager;
@@ -22,6 +25,9 @@ namespace FileMemoryCountManager.ProgrammCompiller
             _xmlProvider = xmlProvider;
         }
 
+        //
+        // Сводка:
+        //      Компилятор основных частей приложения
         public void Compile()
         {
             _fileManager = new FileManager(_serviceProvider.FindFilesInDirectory( _client.SelectFolderForMemoryCounting()), _xmlProvider);

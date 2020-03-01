@@ -2,6 +2,10 @@
 
 namespace FileMemoryCountManager.XmlDocumentSaver
 {
+
+        //
+        // Сводка:
+        //     Представляет каталог для ХML документа
    class Catalog<T> where T : struct
    {
         public List<T> Files { get; set; }

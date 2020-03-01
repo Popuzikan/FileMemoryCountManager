@@ -16,6 +16,5 @@
         {
             return string.Format(Name, Memory.ToString());
         }
-
     }
 }

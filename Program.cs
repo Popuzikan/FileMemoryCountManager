@@ -1,7 +1,7 @@
 ﻿using System;
+using FileMemoryCountManager.Clients;
 using FileMemoryCountManager.ProgrammCompiller;
 using FileMemoryCountManager.XmlDocumentSaver;
-using FileMemoryCountManager.Clients;
 using FileMemoryCountManager.SubSystemsClass;
 
 namespace FileMemoryCountManager
